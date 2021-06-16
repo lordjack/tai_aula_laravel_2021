@@ -11,7 +11,10 @@
 @endsection
 
 @section('content')
-    <b>Pagina Filho</b>
+    <b>Pagina Filho</b><i class="fas fa-address-book"></i>
     <b>Bem vindo {{ $nome }}!</b>
     <p>This is my body content 2.</p>
+    <div class="alert alert-primary" role="alert">
+        Um simples alerta primary. Olha só!
+    </div>
 @endsection
