@@ -36,3 +36,5 @@ Route::get('/pai', function () {
 Route::get('/child', function () {
     return view("child");
 });
+
+Route::get('/turma', "App\Http\Controllers\TurmaController@index");
