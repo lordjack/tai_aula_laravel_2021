@@ -10,4 +10,6 @@ class Turma extends Model
     use HasFactory;
 
     protected $table = 'turma';
+
+    protected $fillable = ["nome", "codigo", "descricao"];
 }

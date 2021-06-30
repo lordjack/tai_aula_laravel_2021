@@ -37,7 +37,21 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*   $turma = new Turma;
+
+        $turma->nome = $request->nome;
+        $turma->codigo = $request->codigo;
+        $turma->descricao = $request->descricao;
+
+        $turma->save(); */
+        Turma::create([
+            'nome' => $request->nome,
+            'codigo' => $request->codigo,
+            'descricao' => $request->descricao,
+        ]);
+
+        // dd($request);
+        return \redirect()->action('App\Http\Controllers\TurmaController@index');
     }
 
     /**

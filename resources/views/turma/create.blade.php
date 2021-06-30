@@ -11,8 +11,8 @@
 @section('content')
 <p></p>
 <h4>Formulário de Turma</h4>
-<form action="#" method="post">
-    <input type="hidden" name="id" value=""><br>
+<form action="{{ action('App\Http\Controllers\TurmaController@store') }}" method="post">
+    @csrf
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="nome">Nome</label>
@@ -22,7 +22,6 @@
         </div>
         <div class="form-group col-md-2">
         </div>
-
         <div class="form-group col-md-6">
             <label for="descricao">Descrição</label>
             <textarea name="descricao" id="descricao" class="form-control"
@@ -30,6 +29,6 @@
         </div>
     </div>
     <button type="submit" class="btn btn-success"> <i class="fas fa-save"></i> Salvar</button>
-    <a href="#" class="btn btn-primary"> <i class="fas fa-arrow-left"></i> Voltar</a>
+    <a href="{{url("/turma")}}" class="btn btn-primary"> <i class="fas fa-arrow-left"></i> Voltar</a>
 </form>
 @endsection

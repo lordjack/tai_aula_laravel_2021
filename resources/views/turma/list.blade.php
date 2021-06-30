@@ -13,6 +13,8 @@
 @section('content')
 <h4>Listagem de Turmas</h4>
 <p></p>
+<a href="{{url("/turma/create")}}" class="btn btn-primary"> <i class="fas fa-plus"></i> Cadastrar</a>
+
 <table class="table table-hover">
     <thead>
         <tr>
