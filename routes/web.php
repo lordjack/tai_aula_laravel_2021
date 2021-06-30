@@ -38,3 +38,9 @@ Route::get('/child', function () {
 });
 
 Route::get('/turma', "App\Http\Controllers\TurmaController@index");
+Route::get('/turma/create', "App\Http\Controllers\TurmaController@create");
+Route::post('/turma/store', "App\Http\Controllers\TurmaController@store");
+Route::get('/turma/edit/{id}', "App\Http\Controllers\TurmaController@edit");
+Route::post('/turma/update/{id}', "App\Http\Controllers\TurmaController@update");
+Route::get('/turma/show/{id}', "App\Http\Controllers\TurmaController@show");
+Route::get('/turma/destroy/{id}', "App\Http\Controllers\TurmaController@destroy");
