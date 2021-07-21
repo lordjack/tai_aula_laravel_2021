@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Turma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TurmaController extends Controller
 {
@@ -37,6 +38,20 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), Turma::rules(), Turma::message())->validate();
+        /*
+        $request->validate([
+            'nome' => 'required|max:80',
+            'codigo' => 'required|max:20',
+            'descricao' => 'required|max:150',
+        ], [
+            'nome.required' => 'O nome é obrigatório',
+            'nome.max' => 'Só é permitido 80 caracteres',
+            'codigo.required' => 'O código é obrigatório',
+            'codigo.max' => 'Só é permitido 20 caracteres',
+            'descricao.required' => 'O descrição é obrigatório',
+            'descricao.max' => 'Só é permitido 150 caracteres',
+        ]);*/
         /*   $turma = new Turma;
 
         $turma->nome = $request->nome;
