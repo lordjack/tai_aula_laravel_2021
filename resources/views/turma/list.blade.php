@@ -31,7 +31,7 @@
             <th scope='row'>{{$item->id}}</th>
             <td>{{$item->nome}}</td>
             <td>{{$item->codigo}}</td>
-            <td><a href='#' style='color:orange;'><i class='fas fa-edit'></i></a>
+            <td><a href="{{ action('App\Http\Controllers\TurmaController@edit',$item->id) }}" style='color:orange;'><i class='fas fa-edit'></i></a>
             </td>
             <td><a href='#' onclick=\"return confirm('Deseja realmente remover o registro?'); \" style='color:red;'><i
                         class='fas fa-trash'></i></a> </td>

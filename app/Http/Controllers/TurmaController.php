@@ -27,7 +27,7 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        return view("turma.create");
+        return view("turma.form");
     }
 
     /**
@@ -53,7 +53,6 @@ class TurmaController extends Controller
             'descricao.max' => 'Só é permitido 150 caracteres',
         ]);*/
         /*   $turma = new Turma;
-
         $turma->nome = $request->nome;
         $turma->codigo = $request->codigo;
         $turma->descricao = $request->descricao;
@@ -88,7 +87,9 @@ class TurmaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $objTurma = Turma::find($id); //select * from turma where id = $id
+
+        return view("turma.form")->with(['turma' => $objTurma]);
     }
 
     /**
@@ -100,7 +101,26 @@ class TurmaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), Turma::rules(), Turma::message())->validate();
+        /*
+        $turma = Turma::find($id);
+        $turma->nome = $request->nome;
+        $turma->codigo = $request->codigo;
+        $turma->descricao = $request->descricao;
+
+        $turma->save();
+*/
+        Turma::updateOrCreate(
+            ['id' => $request->id],
+            [
+                'nome' => $request->nome,
+                'codigo' => $request->codigo,
+                'descricao' => $request->descricao,
+            ]
+        );
+
+        // dd($request);
+        return \redirect()->action('App\Http\Controllers\TurmaController@index');
     }
 
     /**
