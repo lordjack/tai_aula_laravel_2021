@@ -6,15 +6,31 @@
 
 @section('sidebar')
 @parent
-
-<p>This is appended to the master sidebar 1.</p>
 @endsection
 
 @section('content')
 <h4>Listagem de Turmas</h4>
 <p></p>
-<a href="{{url("/turma/create")}}" class="btn btn-primary"> <i class="fas fa-plus"></i> Cadastrar</a>
-
+<form action="{{ action('App\Http\Controllers\TurmaController@search') }}" method="post">
+    @csrf
+    <div class="form-row">
+        <div class="col-3">
+            <input type="text" class="form-control" placeholder="Digite sua pesquisa..." name="valor" id="">
+        </div>
+        <div class="col-3">
+            <select name="tipo" class="form-control" id="">
+                <option value="nome">Nome</option>
+                <option value="codigo">Código</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> Buscar</button>
+        <div class="col-3">
+            <a href="{{url("/turma/create")}}" class="btn btn-success"> <i class="fas fa-plus-circle"></i> Cadastrar</a>
+        </div>
+    </div>
+</form>
+<p>
+</p>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -31,9 +47,11 @@
             <th scope='row'>{{$item->id}}</th>
             <td>{{$item->nome}}</td>
             <td>{{$item->codigo}}</td>
-            <td><a href="{{ action('App\Http\Controllers\TurmaController@edit',$item->id) }}" style='color:orange;'><i class='fas fa-edit'></i></a>
+            <td><a href="{{ action('App\Http\Controllers\TurmaController@edit',$item->id) }}" style='color:orange;'><i
+                        class='fas fa-edit'></i></a>
             </td>
-            <td><a href='{{ action('App\Http\Controllers\TurmaController@destroy', $item->id) }}' onclick="return confirm('Deseja realmente remover o registro?');" style='color:red;'><i
+            <td><a href='{{ action('App\Http\Controllers\TurmaController@destroy', $item->id) }}'
+                    onclick="return confirm('Deseja realmente remover o registro?');" style='color:red;'><i
                         class='fas fa-trash'></i></a> </td>
         </tr>
         @endforeach

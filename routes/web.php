@@ -44,3 +44,4 @@ Route::get('/turma/edit/{id}', "App\Http\Controllers\TurmaController@edit");
 Route::post('/turma/update/{id}', "App\Http\Controllers\TurmaController@update");
 Route::get('/turma/show/{id}', "App\Http\Controllers\TurmaController@show");
 Route::get('/turma/destroy/{id}', "App\Http\Controllers\TurmaController@destroy");
+Route::post('/turma/search/', "App\Http\Controllers\TurmaController@search");

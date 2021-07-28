@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Turma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class TurmaController extends Controller
@@ -136,5 +137,33 @@ class TurmaController extends Controller
         $turma->delete();
 
         return \redirect()->action('App\Http\Controllers\TurmaController@index');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        /* if ($request->tipo == "nome") {
+            $objResult = Turma::where('nome', 'like', "%" . $request->valor . "%")->get();
+        } else if ($request->tipo == "codigo") {
+            $objResult =  Turma::where('codigo', 'like', "%" . $request->valor . "%")->get();
+        }
+ */
+        $query = DB::table('turma');
+        if ($request->tipo == "nome") {
+            $query->where('nome', 'like', "%" . $request->valor . "%");
+        } else if ($request->tipo == "codigo") {
+            $query->where('codigo', 'like', "%" . $request->valor . "%");
+        }
+
+        $objResult = $query->orderBy("id")->get();
+
+        // dd($objResult);
+        return view("turma.list")->with(['turmas' => $objResult]);
     }
 }
