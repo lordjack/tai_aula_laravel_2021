@@ -93,8 +93,9 @@ class TurmaController extends Controller
     public function edit($id)
     {
         $objTurma = Turma::find($id); //select * from turma where id = $id
+        $turma_categorias = TurmaCategoria::all(); //select * from turma_categoria
 
-        return view("turma.form")->with(['turma' => $objTurma]);
+        return view("turma.form")->with(['turma' => $objTurma, 'turma_categorias' => $turma_categorias]);
     }
 
     /**
@@ -120,6 +121,7 @@ class TurmaController extends Controller
             [
                 'nome' => $request->nome,
                 'codigo' => $request->codigo,
+                'turma_categoria_id' => $request->turma_categoria_id,
                 'descricao' => $request->descricao,
             ]
         );
