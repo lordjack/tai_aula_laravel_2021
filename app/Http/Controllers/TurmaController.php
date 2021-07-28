@@ -131,6 +131,10 @@ class TurmaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $turma = Turma::findOrFail($id);
+
+        $turma->delete();
+
+        return \redirect()->action('App\Http\Controllers\TurmaController@index');
     }
 }
