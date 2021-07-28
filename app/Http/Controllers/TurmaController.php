@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Turma;
+use App\Models\TurmaCategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,9 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        return view("turma.form");
+        $turma_categorias = TurmaCategoria::all();
+
+        return view("turma.form")->with(['turma_categorias' => $turma_categorias]);
     }
 
     /**
@@ -62,6 +65,7 @@ class TurmaController extends Controller
         Turma::create([
             'nome' => $request->nome,
             'codigo' => $request->codigo,
+            'turma_categoria_id' => $request->turma_categoria_id,
             'descricao' => $request->descricao,
         ]);
 

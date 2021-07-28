@@ -11,7 +11,7 @@ class Turma extends Model
 
     protected $table = 'turma';
 
-    protected $fillable = ["nome", "codigo", "descricao"];
+    protected $fillable = ["nome", "codigo", "descricao", 'turma_categoria_id'];
 
 
     public static function rules()
@@ -19,6 +19,7 @@ class Turma extends Model
         return [
             'nome' => 'required|max:80',
             'codigo' => 'required|max:20',
+            'turma_categoria_id' => 'required',
             'descricao' => 'required|max:150',
         ];
     }
@@ -32,6 +33,7 @@ class Turma extends Model
             'codigo.max' => 'Só é permitido 20 caracteres',
             'descricao.required' => 'O descrição é obrigatório',
             'descricao.max' => 'Só é permitido 150 caracteres',
+            'turma_categoria_id.required' => 'A categoria é obrigatório',
         ];
     }
 }

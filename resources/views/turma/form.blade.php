@@ -22,9 +22,9 @@
 
 @php
 if(!empty(Request::route('id'))){
-    $action = action('App\Http\Controllers\TurmaController@update',$turma->id );
+$action = action('App\Http\Controllers\TurmaController@update',$turma->id );
 }else{
-    $action = action('App\Http\Controllers\TurmaController@store');
+$action = action('App\Http\Controllers\TurmaController@store');
 }
 
 @endphp
@@ -39,12 +39,24 @@ if(!empty(Request::route('id'))){
             <input type="text" name="nome" id="nome" class="form-control"
                 value="@if(!empty(old('nome'))) {{old('nome') }}  @elseif (!empty($turma->nome)) {{ $turma->nome}} @endif"
                 placeholder="Nome"><br>
+
+        </div>
+        <div class="form-group col-md-6"> </div>
+        <div class="form-group col-md-3">
             <label for="codigo">Código</label>
             <input type="text" name="codigo" id="codigo" class="form-control"
                 value="@if(!empty(old('codigo'))) {{old('codigo') }}  @elseif (!empty($turma->codigo)) {{ $turma->codigo}} @endif"><br>
         </div>
-        <div class="form-group col-md-2">
+
+        <div class="form-group col-md-3">
+            <label for="turma_categoria_id">Categoria</label>
+            <select name="turma_categoria_id" class="form-control">
+                @foreach ($turma_categorias as $item)
+                <option value="{{$item->id}}">{{$item->nome}} - {{$item->sigla}}</option>
+                @endforeach
+            </select>
         </div>
+        <div class="form-group col-md-6"> </div>
         <div class="form-group col-md-6">
             <label for="descricao">Descrição</label>
             <textarea name="descricao" id="descricao" class="form-control"
