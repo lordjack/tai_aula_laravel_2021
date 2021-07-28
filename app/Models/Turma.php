@@ -36,4 +36,12 @@ class Turma extends Model
             'turma_categoria_id.required' => 'A categoria é obrigatório',
         ];
     }
+
+    /**
+     * Get the post that owns the categorias.
+     */
+    public function categorias()
+    {
+        return $this->belongsTo(TurmaCategoria::class, 'turma_categoria_id', 'id');
+    }
 }

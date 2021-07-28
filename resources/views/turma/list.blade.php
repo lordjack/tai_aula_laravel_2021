@@ -21,6 +21,7 @@
             <select name="tipo" class="form-control" id="">
                 <option value="nome">Nome</option>
                 <option value="codigo">Código</option>
+                <option value="categoria">Categoria</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> Buscar</button>
@@ -37,6 +38,7 @@
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">Código</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Ação</th>
             <th scope="col">Ação</th>
         </tr>
@@ -47,6 +49,7 @@
             <th scope='row'>{{$item->id}}</th>
             <td>{{$item->nome}}</td>
             <td>{{$item->codigo}}</td>
+            <td>{{$item->categorias->nome ?? "" }}</td>
             <td><a href="{{ action('App\Http\Controllers\TurmaController@edit',$item->id) }}" style='color:orange;'><i
                         class='fas fa-edit'></i></a>
             </td>

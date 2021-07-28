@@ -7,6 +7,7 @@ use App\Models\TurmaCategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\Builder;
 
 class TurmaController extends Controller
 {
@@ -17,9 +18,9 @@ class TurmaController extends Controller
      */
     public function index()
     {
-        $objTurma = Turma::all();
+        $objResult = Turma::all();
 
-        return view("turma.list")->with(['turmas' => $objTurma]);
+        return view("turma.list")->with(['turmas' => $objResult]);
     }
 
     /**
@@ -154,21 +155,27 @@ class TurmaController extends Controller
      */
     public function search(Request $request)
     {
-        /* if ($request->tipo == "nome") {
+
+        if ($request->tipo == "nome") {
             $objResult = Turma::where('nome', 'like', "%" . $request->valor . "%")->get();
         } else if ($request->tipo == "codigo") {
             $objResult =  Turma::where('codigo', 'like', "%" . $request->valor . "%")->get();
+        } else if ($request->tipo == "categoria") {
+            $objResult = Turma::whereHas('categorias', function (Builder $query) use (&$request) {
+                $query->where('nome', 'like', "%" . $request->valor . "%");
+            })->get();
         }
- */
+        /*
         $query = DB::table('turma');
+
         if ($request->tipo == "nome") {
-            $query->where('nome', 'like', "%" . $request->valor . "%");
+            $query->where('turma.nome', 'like', "%" . $request->valor . "%");
         } else if ($request->tipo == "codigo") {
             $query->where('codigo', 'like', "%" . $request->valor . "%");
         }
 
         $objResult = $query->orderBy("id")->get();
-
+*/
         // dd($objResult);
         return view("turma.list")->with(['turmas' => $objResult]);
     }
