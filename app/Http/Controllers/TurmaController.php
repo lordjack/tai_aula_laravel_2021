@@ -180,4 +180,15 @@ class TurmaController extends Controller
         // dd($objResult);
         return view("turma.list")->with(['turmas' => $objResult]);
     }
+
+    public function gerarTurmaPDF()
+    {
+
+        $turmas = Turma::all();
+
+        return PDF::loadView('pdf.turmaList', compact('turmas'))
+            ->download('relatorioTurma.pdf');
+        // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+
+    }
 }

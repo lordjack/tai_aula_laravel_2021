@@ -52,4 +52,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/turma/destroy/{id}', "App\Http\Controllers\TurmaController@destroy");
     Route::post('/turma/search/', "App\Http\Controllers\TurmaController@search");
 
+    Route::get('/turma-relatorio', "App\Http\Controllers\TurmaController@gerarTurmaPDF");
 });
