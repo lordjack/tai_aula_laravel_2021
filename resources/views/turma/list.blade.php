@@ -27,6 +27,8 @@
         <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> Buscar</button>
         <div class="col-3">
             <a href="{{url("/turma/create")}}" class="btn btn-success"> <i class="fas fa-plus-circle"></i> Cadastrar</a>
+            <a href="{{url("/turma-relatorio")}}" class="btn btn-danger"> <i class="fas fa-file-pdf"></i> Relatório</a>
+
         </div>
     </div>
 </form>

@@ -52,7 +52,7 @@ $action = action('App\Http\Controllers\TurmaController@store');
             <label for="turma_categoria_id">Categoria</label>
             <select name="turma_categoria_id" class="form-control">
                 @foreach ($turma_categorias as $item)
-                <option value="{{$item->id}}" @if($item->id == old('turma_categoria_id', $turma->turma_categoria_id)) selected="selected" @endif >{{$item->nome}} -
+                <option value="{{$item->id}}" @if($item->id == old('turma_categoria_id', !empty($turma->turma_categoria_id))) selected="selected" @endif >{{$item->nome}} -
                     {{$item->sigla}}</option>
                 @endforeach
             </select>
