@@ -19,7 +19,7 @@ class TurmaController extends Controller
      */
     public function index()
     {
-        $objResult = Turma::all();
+        $objResult = Turma::paginate(10);
 
         return view("turma.list")->with(['turmas' => $objResult]);
     }

@@ -62,4 +62,5 @@
         @endforeach
     </tbody>
 </table>
+<div class="d-flex justify-content-center">{{ $turmas->links() }}</div>
 @endsection
