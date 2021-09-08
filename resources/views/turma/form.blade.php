@@ -74,10 +74,14 @@ $action = action('App\Http\Controllers\TurmaController@store');
             <textarea name="descricao" id="descricao" class="form-control"
                 placeholder="Sua descrição..."> @if(!empty(old('descricao'))) {{old('descricao') }}  @elseif (!empty($turma->descricao)) {{ $turma->descricao}} @endif</textarea><br>
         </div>
+        @php
+        !empty($turma->nome_arquivo) ? $nome_arquivo = $turma->nome_arquivo : $nome_arquivo = "sem_imagem.jpg";
+        @endphp
         <div class="form-group col-md-6">
             <label for="nome_arquivo">Imagem</label>
-            <input type="file" name="nome_arquivo" id="nome_arquivo" class="form-control"
-                ><br>
+            <input type="file" name="nome_arquivo" id="nome_arquivo" class="form-control">
+            <img src="/storage/imagem/{{$nome_arquivo}}" width="300px" />
+            <br>
         </div>
     </div>
     <button type="submit" class="btn btn-success"> <i class="fas fa-save"></i> Salvar</button>

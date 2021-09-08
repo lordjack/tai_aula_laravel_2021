@@ -38,6 +38,7 @@
     <thead>
         <tr>
             <th scope="col">ID</th>
+            <th scope="col">Imagem</th>
             <th scope="col">Nome</th>
             <th scope="col">Código</th>
             <th scope="col">Categoria</th>
@@ -47,8 +48,12 @@
     </thead>
     <tbody>
         @foreach ($turmas as $item)
+        @php
+        !empty($item->nome_arquivo) ? $nome_arquivo = $item->nome_arquivo : $nome_arquivo = "sem_imagem.jpg";
+        @endphp
         <tr>
             <th scope='row'>{{$item->id}}</th>
+            <td><img src="/storage/imagem/{{$nome_arquivo}}" width="100px" /></td>
             <td>{{$item->nome}}</td>
             <td>{{$item->codigo}}</td>
             <td>{{$item->categorias->nome ?? "" }}</td>
