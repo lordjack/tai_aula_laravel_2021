@@ -39,7 +39,7 @@ $action = action('App\Http\Controllers\TurmaController@store');
 
 @endphp
 <h4>Formulário de Turma</h4>
-<form action="{{ $action }}" method="post">
+<form action="{{ $action }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-row">
         <input type="hidden" name="id"
@@ -73,6 +73,11 @@ $action = action('App\Http\Controllers\TurmaController@store');
             <label for="descricao">Descrição</label>
             <textarea name="descricao" id="descricao" class="form-control"
                 placeholder="Sua descrição..."> @if(!empty(old('descricao'))) {{old('descricao') }}  @elseif (!empty($turma->descricao)) {{ $turma->descricao}} @endif</textarea><br>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="nome_arquivo">Imagem</label>
+            <input type="file" name="nome_arquivo" id="nome_arquivo" class="form-control"
+                ><br>
         </div>
     </div>
     <button type="submit" class="btn btn-success"> <i class="fas fa-save"></i> Salvar</button>

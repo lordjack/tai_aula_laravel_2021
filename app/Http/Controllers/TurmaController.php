@@ -63,13 +63,21 @@ class TurmaController extends Controller
         $turma->codigo = $request->codigo;
         $turma->descricao = $request->descricao;
 
+
         $turma->save(); */
-        Turma::create([
-            'nome' => $request->nome,
-            'codigo' => $request->codigo,
-            'turma_categoria_id' => $request->turma_categoria_id,
-            'descricao' => $request->descricao,
-        ]);
+        $input = $request->all();
+
+        $image = $request->file("nome_arquivo");
+        if ($image) {
+            $nome_arquivo = date('YmdHis') . "." . $image->getClientOriginalExtension();
+
+            $request->nome_arquivo->storeAs('public/imagem', $nome_arquivo);
+
+            $input['nome_arquivo'] = $nome_arquivo;
+        }
+       // dd($input);
+
+        Turma::create($input);
 
         // dd($request);
         return \redirect()->action('App\Http\Controllers\TurmaController@index');
