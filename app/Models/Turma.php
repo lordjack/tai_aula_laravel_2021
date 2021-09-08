@@ -11,7 +11,7 @@ class Turma extends Model
 
     protected $table = 'turma';
 
-    protected $fillable = ["nome", "codigo", "descricao", 'turma_categoria_id'];
+    protected $fillable = ["nome", "codigo", "descricao", 'turma_categoria_id', 'nome_arquivo'];
 
 
     public static function rules()
@@ -21,6 +21,7 @@ class Turma extends Model
             'codigo' => 'required|max:20',
             'turma_categoria_id' => 'required',
             'descricao' => 'required|max:150',
+            'nome_arquivo' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ];
     }
 
