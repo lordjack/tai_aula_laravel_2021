@@ -21,7 +21,7 @@ class Turma extends Model
             'codigo' => 'required|max:20',
             'turma_categoria_id' => 'required',
             'descricao' => 'required|max:150',
-            'nome_arquivo' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'nome_arquivo' => 'image|mimes:jpeg,jpg,png|max:2048',
         ];
     }
 
