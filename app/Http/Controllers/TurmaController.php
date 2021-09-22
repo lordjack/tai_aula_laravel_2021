@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 class TurmaController extends Controller
@@ -158,6 +159,9 @@ class TurmaController extends Controller
     {
         $turma = Turma::findOrFail($id);
 
+        if (Storage::exists('public/imagem/' . $turma->nome_arquivo)) {
+            Storage::delete('public/imagem/' . $turma->nome_arquivo);
+        }
         $turma->delete();
 
         return \redirect()->action('App\Http\Controllers\TurmaController@index');
