@@ -81,7 +81,7 @@ class TurmaController extends Controller
         Turma::create($input);
 
         // dd($request);
-        return \redirect()->action('App\Http\Controllers\TurmaController@index');
+        return \redirect()->action('App\Http\Controllers\TurmaController@index')->with('success', 'Registro incluido com sucesso!');
     }
 
     /**
@@ -146,7 +146,7 @@ class TurmaController extends Controller
         );
 
         // dd($request);
-        return \redirect()->action('App\Http\Controllers\TurmaController@index');
+        return \redirect()->action('App\Http\Controllers\TurmaController@index')->with('success', 'Registro atualizado com sucesso!');
     }
 
     /**
@@ -164,7 +164,7 @@ class TurmaController extends Controller
         }
         $turma->delete();
 
-        return \redirect()->action('App\Http\Controllers\TurmaController@index');
+        return \redirect()->action('App\Http\Controllers\TurmaController@index')->with('error', 'Registro removido com sucesso!');
     }
 
     /**
