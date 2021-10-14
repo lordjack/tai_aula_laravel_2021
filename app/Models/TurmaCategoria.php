@@ -11,4 +11,9 @@ class TurmaCategoria extends Model
     protected $table = 'turma_categoria';
 
     protected $fillable = ["nome", "sigla"];
+
+    public function turma()
+    {
+        return $this->hasOne(Turma::class, 'turma_categoria', 'id');
+    }
 }

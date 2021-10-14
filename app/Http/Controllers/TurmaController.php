@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMailTurma;
 use App\Models\Turma;
 use App\Models\TurmaCategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use PDF;
 
@@ -21,9 +23,12 @@ class TurmaController extends Controller
     public function index()
     {
         $objResult = Turma::paginate(10);
+        // $objResult = Turma::all();
 
         return view("turma.list")->with(['turmas' => $objResult]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

@@ -25,10 +25,10 @@
             </select>
         </div>
         <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> Buscar</button>
-        <div class="col-3">
+        <div class="col-4">
             <a href="{{url("/turma/create")}}" class="btn btn-success"> <i class="fas fa-plus-circle"></i> Cadastrar</a>
             <a href="{{url("/turma-relatorio")}}" class="btn btn-danger"> <i class="fas fa-file-pdf"></i> Relatório</a>
-
+            <a href="{{url("/turma-email")}}" class="btn btn-warning"> <i class="fas fa-paper-plane"></i> Enviar Email</a>
         </div>
     </div>
 </form>
@@ -41,6 +41,7 @@
             <th scope="col">Imagem</th>
             <th scope="col">Nome</th>
             <th scope="col">Código</th>
+            <th scope="col">Curso</th>
             <th scope="col">Categoria</th>
             <th scope="col">Ação</th>
             <th scope="col">Ação</th>
@@ -56,6 +57,7 @@
             <td><img src="/storage/imagem/{{$nome_arquivo}}" width="100px" /></td>
             <td>{{$item->nome}}</td>
             <td>{{$item->codigo}}</td>
+            <td>{{$item->curso->nome ?? "" }}</td>
             <td>{{$item->categorias->nome ?? "" }}</td>
             <td><a href="{{ action('App\Http\Controllers\TurmaController@edit',$item->id) }}" style='color:orange;'><i
                         class='fas fa-edit'></i></a>

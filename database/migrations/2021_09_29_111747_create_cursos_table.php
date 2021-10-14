@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTurma2 extends Migration
+class CreateCursosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class AlterTurma2 extends Migration
      */
     public function up()
     {
-         Schema::table('turma', function (Blueprint $table) {
-            $table->string('nome_arquivo',150)->after('created_at')->nullable();
+        Schema::create('curso', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome', 100);
+            $table->string('abreviatura', 20);
+            $table->date('data_inicio');
+            $table->date('data_fim');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class AlterTurma2 extends Migration
      */
     public function down()
     {
-        Schema::table('turma', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('cursos');
     }
 }

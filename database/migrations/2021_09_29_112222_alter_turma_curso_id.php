@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTurma extends Migration
+class AlterTurmaCursoId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class AlterTurma extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
+        //php artisan make:migration alter_turma --table=turma
         Schema::table('turma', function (Blueprint $table) {
-            $table->bigInteger('turma_categoria_id')->unsigned()->nullable();
-            $table->foreign('turma_categoria_id')->references("id")->on('turma_categoria');
-            $table->string('nome_arquivo', 150)->after('created_at')->nullable();
+            $table->foreignId('curso_id')->unsigned()->constrained('curso')->after('nome_arquivo');
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -27,7 +30,7 @@ class AlterTurma extends Migration
      */
     public function down()
     {
-        Schema::table('turma', function (Blueprint $table) {
+        Schema::table('Turma', function (Blueprint $table) {
             //
         });
     }

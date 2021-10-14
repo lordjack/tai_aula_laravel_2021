@@ -45,4 +45,14 @@ class Turma extends Model
     {
         return $this->belongsTo(TurmaCategoria::class, 'turma_categoria_id', 'id');
     }
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class, 'curso_id', 'id');
+    }
+
+    public function disciplinas()
+    {
+        return $this->belongsToMany(Disciplina::class, 'disciplina_turma',  'turma_id', 'disciplina_id',);
+    }
 }
