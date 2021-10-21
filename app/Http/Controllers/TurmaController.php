@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMailTurma;
 use App\Models\Turma;
 use App\Models\TurmaCategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -199,6 +201,21 @@ class TurmaController extends Controller
 */
         // dd($objResult);
         return view("turma.list")->with(['turmas' => $objResult]);
+    }
+    public function sendEmail()
+    {
+        $turma = [];
+        $turma['turmas'] = Turma::paginate(5);
+
+        try {
+            Mail::to('lordjackson@gmail.com')
+                // ->cc('lordjackson@gmail.com')
+                ->send(new SendMailTurma($turma));
+
+            return \redirect()->action('App\Http\Controllers\TurmaController@index')->with('success', 'Envio de email realizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
     }
 
     public function gerarTurmaPDF()
