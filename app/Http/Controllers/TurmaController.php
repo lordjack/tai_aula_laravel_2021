@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\TurmaChart;
 use App\Mail\SendMailTurma;
 use App\Models\Turma;
 use App\Models\TurmaCategoria;
@@ -24,7 +25,9 @@ class TurmaController extends Controller
     {
         $objResult = Turma::paginate(10);
 
-        return view("turma.list")->with(['turmas' => $objResult]);
+        $chart = new TurmaChart();
+
+        return view("turma.list")->with(['turmas' => $objResult, 'chartTurma' => $chart->build()]);
     }
 
     /**

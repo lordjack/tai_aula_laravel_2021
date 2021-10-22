@@ -8,6 +8,15 @@
 @parent
 @endsection
 
+@section('grafico')
+<div class="row">
+    <div class="col-6">
+        {{ $chartTurma->container() }}
+        {{ $chartTurma->script() }}
+    </div>
+</div>
+@stop
+
 @section('content')
 <h4>Listagem de Turmas</h4>
 <p></p>
@@ -26,9 +35,11 @@
         </div>
         <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> Buscar</button>
         <div class="col-4">
-            <a href="{{url("/turma/create")}}" class="btn btn-success"> <i class="fas fa-plus-circle"></i> Cadastrar</a>
+            <a href="{{url("/turma/create")}}" class="btn btn-success"> <i class="fas fa-plus-circle"></i>
+                Cadastrar</a>
             <a href="{{url("/turma-relatorio")}}" class="btn btn-danger"> <i class="fas fa-file-pdf"></i> Relatório</a>
-            <a href="{{url("/turma-email")}}" class="btn btn-warning"> <i class="fas fa-paper-plane"></i> Enviar Email</a>
+            <a href="{{url("/turma-email")}}" class="btn btn-warning"> <i class="fas fa-paper-plane"></i> Enviar
+                Email</a>
         </div>
     </div>
 </form>
@@ -62,7 +73,7 @@
             <td><a href="{{ action('App\Http\Controllers\TurmaController@edit',$item->id) }}" style='color:orange;'><i
                         class='fas fa-edit'></i></a>
             </td>
-            <td><a href='{{ action('App\Http\Controllers\TurmaController@destroy', $item->id) }}'
+            <td><a href='{{-- action(' App\Http\Controllers\TurmaController@destroy', $item->id) --}}'
                     onclick="return confirm('Deseja realmente remover o registro?');" style='color:red;'><i
                         class='fas fa-trash'></i></a> </td>
         </tr>

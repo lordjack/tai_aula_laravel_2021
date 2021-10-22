@@ -13,6 +13,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="{{ @asset('vendor/larapex-charts/apexcharts.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -97,6 +98,17 @@
                 </div>
             </div>
         </main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            @yield('grafico')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
