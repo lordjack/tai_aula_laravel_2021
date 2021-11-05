@@ -17,7 +17,7 @@ class AlterTurmaCursoId extends Migration
 
         //php artisan make:migration alter_turma --table=turma
         Schema::table('turma', function (Blueprint $table) {
-            $table->foreignId('curso_id')->unsigned()->constrained('curso')->after('nome_arquivo');
+            $table->foreignId('curso_id')->nullable()->unsigned()->constrained('curso')->after('nome_arquivo');
         });
 
         Schema::enableForeignKeyConstraints();

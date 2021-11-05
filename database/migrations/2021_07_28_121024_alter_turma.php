@@ -15,8 +15,8 @@ class AlterTurma extends Migration
     {
         Schema::table('turma', function (Blueprint $table) {
             $table->bigInteger('turma_categoria_id')->unsigned()->nullable();
-            $table->foreign('turma_categoria_id')->references("id")->on('turma_categoria');
-            $table->string('nome_arquivo', 150)->after('created_at')->nullable();
+            $table->foreign('turma_categoria_id')->references("id")->on('turma_categoria')->nullable();
+            //  $table->string('nome_arquivo', 150)->after('created_at')->nullable();
         });
     }
 

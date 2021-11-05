@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Disciplina;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            CursoSeeder::class,
             TurmaSeeder::class,
+            TurmaCategoriaSeeder::class,
+            DisciplinaSeeder::class,
+            DisciplinaTurmaSeeder::class,
         ]);
     }
 }

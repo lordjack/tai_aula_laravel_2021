@@ -23,6 +23,7 @@ class TurmaController extends Controller
      */
     public function index()
     {
+       // dd(database_path('database.sqlite'));
         $objResult = Turma::paginate(10);
 
         $chart = new TurmaChart();
@@ -50,7 +51,6 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), Turma::rules(), Turma::message())->validate();
         /*
         $request->validate([
             'nome' => 'required|max:80',
@@ -71,6 +71,7 @@ class TurmaController extends Controller
 
 
         $turma->save(); */
+        Validator::make($request->all(), Turma::rules(), Turma::message())->validate();
         $input = $request->all();
 
         $image = $request->file("nome_arquivo");
@@ -123,6 +124,7 @@ class TurmaController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         Validator::make($request->all(), Turma::rules(), Turma::message())->validate();
         /*
         $turma = Turma::find($id);
